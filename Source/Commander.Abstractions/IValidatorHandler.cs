@@ -5,11 +5,8 @@ using System.Text;
 
 namespace Commander.Abstractions
 {
-
-    public interface IEventAsync : IEvent
-    {
-    }
-    public interface IEvent : INotification, IMessage
+    public interface IValidatorHandler<TMessage> : INotificationHandler<TMessage>
+        where TMessage : IValidatable
     {
     }
 }

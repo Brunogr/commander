@@ -3,17 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Commander.Core
+namespace Commander.Abstractions
 {
     public abstract class Event : IEvent
     {
         protected Event()
         {
-            Timestamp = DateTime.Now;
+            Timestamp = DateTimeOffset.Now;
             MessageType = GetType().Name;
         }
 
-        public DateTime Timestamp { get; private set; }
+        public DateTimeOffset Timestamp { get; private set; }
 
         public string MessageType { get; private set; }
     }

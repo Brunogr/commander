@@ -7,7 +7,6 @@ namespace Commander.MessageBus.Abstractions
     public interface IMessageBusConfiguration
     {
         string ConnectionString { get; }
-        string GroupId { get; }
 
     }
 }

@@ -8,7 +8,7 @@ namespace Commander.Abstractions
     {
         public CommandResult()
         {
-            Success = false;
+            Success = true;
         }
 
         public CommandResult(bool success)

@@ -9,7 +9,7 @@ namespace Commander.Abstractions
 {
     public interface IHandler
     {
-        Task<CommandResult> Send<TCommand>(TCommand command, CancellationToken cancellationToken = default(CancellationToken))
+        Task<CommandResult> SendAsync<TCommand>(TCommand command, CancellationToken cancellationToken = default(CancellationToken))
             where TCommand : ICommand<CommandResult>;
         
         Task Validate<T>(T entity) where T : IValidatable;
