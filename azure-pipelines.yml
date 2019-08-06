@@ -33,11 +33,16 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- script: dotnet pack /p:PackageVersion=$(Major).$(Minor).$(rev:.r)  # define version variable elsewhere in your pipeline
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    includesymbols: true
+    versioningScheme: 'off'
+
 - task: NuGetCommand@2
   inputs:
-    command: push
-    nuGetFeedType: external
-    publishFeedCredentials: 'oy2m4hlwqvss67bnnuka5e66yjuh3inencijdpiu3xlulq'
-    versioningScheme: byEnvVar
-    versionEnvVar: version
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'e5247ab1-22c6-4709-b805-ec0958b8520d'
